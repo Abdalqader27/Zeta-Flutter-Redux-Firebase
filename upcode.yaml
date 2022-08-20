@@ -1,0 +1,22 @@
+
+
+flutter_dir: mobile
+#private_dir: mobile/private
+
+modules:
+  - root
+  - mobile
+#  - admin
+#  - confirm_web
+
+generated:
+  - root
+
+api_config:
+
+
+env:
+  dev:
+    base_application_id: io.zeta.app.dev
+  prod:
+    base_application_id: io.zeta.app
