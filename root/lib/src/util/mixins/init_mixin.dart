@@ -1,9 +1,11 @@
-import 'package:firebase_crashlytics/firebase_crashlytics.dart';
+import 'dart:developer';
+
 import 'package:flutter/cupertino.dart';
 import 'package:redux/redux.dart';
 
 class InitResult<S> {
   const InitResult(this.store);
+
   final Store<S> store;
 }
 
@@ -24,7 +26,7 @@ mixin InitMixin<T extends StatefulWidget, S> on State<T> {
       final Store<S> store = result.store;
       _store = store;
     } catch (e, s) {
-      FirebaseCrashlytics.instance.recordError(e, s);
+      log(e.toString(), stackTrace: s);
     }
   }
 
