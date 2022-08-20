@@ -16,7 +16,7 @@ mixin InitMixin<T extends StatefulWidget, S> on State<T> {
   late Store<S> _store;
   late Stream<dynamic> _actions;
 
-  Future<InitResult<S>> init();
+  InitResult<S> init();
 
   @override
   void initState() {
@@ -24,9 +24,9 @@ mixin InitMixin<T extends StatefulWidget, S> on State<T> {
     _initialize();
   }
 
-  Future<void> _initialize() async {
+  void _initialize() {
     try {
-      final InitResult<S> result = await init();
+      final InitResult<S> result = init();
       final Store<S> store = result.store;
       _completer.complete(store);
       _store = store;
