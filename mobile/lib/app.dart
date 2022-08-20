@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
-import 'package:redux/redux.dart';
 import 'package:root/root.dart';
 import 'package:zeta/src/init/init.dart';
 
@@ -14,14 +13,18 @@ class App extends StatefulWidget {
 class _AppState extends State<App> with InitMixin<App, AppState> {
   @override
   Widget build(BuildContext context) {
-    return FutureBuilder(
-        future: initFuture,
-        builder: (context, AsyncSnapshot<Store<AppState>> snapshot) {
-          return StoreProvider<AppState>(
-              store: snapshot.data!, child: Container());
-        });
+    return StoreProvider<AppState>(
+      store: store,
+      child: MaterialApp(
+        title: 'Flutter Demo',
+        theme: ThemeData(
+          primarySwatch: Colors.blue,
+        ),
+        home: const Scaffold(body: Text('Hello World')),
+      ),
+    );
   }
 
   @override
-  InitResult<AppState> init() => initMobile();
+  InitResult<AppState> init() => initStore();
 }
